@@ -1,25 +1,23 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "triangle"
+set :repository,  "git@github.com:ehendri/triangle.git"
+set :scm, "git"
 
-# If you aren't deploying to /u/apps/#{application} on the target
-# servers (which is the default), you can specify the actual location
-# via the :deploy_to variable:
-# set :deploy_to, "/var/www/#{application}"
+# Determine which branch to be checked out
+set :branch, "master"
 
-# If you aren't using Subversion to manage your source code, specify
-# your SCM below:
-# set :scm, :subversion
 
 # ===================================================================
 # ENVIRONMENT CONFIGURATION
 # ===================================================================
 
+set :deploy_to, "/Library/WebServer/Documents/triangle"
+
 if  exists?(:staging) # If the environment is staging
   set :rails_env, :staging
 
-  role :app, 192.168.1.107
-  role :web, 192.168.1.107
-  role :db,  192.168.1.107, :primary => true
+  role :app, "192.168.1.107"
+  role :web, "192.168.1.107"
+  role :db,  "192.168.1.107", :primary => true
 end
 
 # ===================================================================
